@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import com.codename1.io.ConnectionRequest;
+import com.codename1.io.MultipartRequest;
+import com.codename1.ui.Dialog;
 
 /**
  *
@@ -45,6 +47,88 @@ public class GuideService {
 
         return instance;
     }
+     //Add
+    public boolean addGuide(Guides g) {
+
+        //1
+        String addURL = Statics.BASE_URL + "/guide/newGuide/new/";
+
+        //2
+        req.setUrl(addURL);
+
+        //3
+        req.setPost(false);
+
+        //4
+        req.addArgument("titre", g.getTitre());
+        req.addArgument("Pays", g.getPays());
+        req.addArgument("level", g.getLevel()+ "");
+        req.addArgument("image", g.getImage());
+        req.addArgument("idvol", g.getId_vol()+"");
+      
+
+        //5
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200;
+                req.removeResponseListener(this);
+            }
+        });
+
+        NetworkManager.getInstance().addToQueueAndWait(req);
+
+        return resultOK;
+    }
+     public boolean updateGuide(Guides g) {
+
+        //1
+        String addURL = Statics.BASE_URL + "/guide/updateGuide/"+g.getID_g();
+
+        //2
+        req.setUrl(addURL);
+
+        //3
+        req.setPost(false);
+
+        //4
+        req.addArgument("titre", g.getTitre());
+        req.addArgument("Pays", g.getPays());
+        req.addArgument("level", g.getLevel()+ "");
+        req.addArgument("image", g.getImage());
+        req.addArgument("idvol", g.getId_vol()+"");
+      
+
+        //5
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200;
+                req.removeResponseListener(this);
+            }
+        });
+
+        NetworkManager.getInstance().addToQueueAndWait(req);
+
+        return resultOK;
+    }
+       public boolean deleteGuide(int id) {
+    
+            
+            MultipartRequest cr = new MultipartRequest();
+            cr.setUrl(Statics.BASE_URL+"/guide/deleteGuide/"+id);
+            cr.setPost(false);
+            cr.addResponseListener(e -> {
+                if(cr.getResponseCode() == 200)
+                    Dialog.show("Supprimer","Guide Supprimé " , "OK",null);
+
+                  
+            });
+            NetworkManager.getInstance().addToQueueAndWait(cr);
+            return true;
+      
+    }
+    
        public List<Guides> fetchGuides() {
         
         req = new ConnectionRequest();

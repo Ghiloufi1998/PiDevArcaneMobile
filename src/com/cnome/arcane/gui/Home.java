@@ -39,8 +39,22 @@ import com.codename1.ui.util.Resources;
 public class Home extends SideMenu{
 
     public Home(Resources res){
-            super(BoxLayout.y());
+           super(BoxLayout.y());
         Toolbar tb = getToolbar();
+         this.setLayout(BoxLayout.yCenter());
+        this.setTitle("Home");
+        Button addTaskBtn = new Button("Ajouter Guide");
+        Button consulter = new Button("Consulter Guide");
+          addTaskBtn.addActionListener((evt) -> {
+           
+            new AddGuideForm(res).show();
+            
+        });
+          consulter.addActionListener((evt) -> {
+           
+            new ListeGuideFront(res).show();
+            
+        });
         tb.setTitleCentered(false);
      //  Image mask = res.getImage("Image 1.png");
 //        profilePic = profilePic.fill(mask.getWidth(), mask.getHeight());
@@ -48,6 +62,7 @@ public class Home extends SideMenu{
 //        profilePicLabel.setMask(mask.createMask());
 
         Button menuButton = new Button("");
+        
         menuButton.setUIID("Title");
         FontImage.setMaterialIcon(menuButton, FontImage.MATERIAL_MENU);
         menuButton.addActionListener(e -> getToolbar().openSideMenu());
@@ -62,34 +77,17 @@ public class Home extends SideMenu{
                 )
         );
         tb.setTitleComponent(titleCmp);
-        setupSideMenu(res);
+            setupSideMenu(res);
+         this.add(addTaskBtn);
+         this.add(consulter);
     
-//        super(BoxLayout.y());
-////        Toolbar tb = getToolbar();
-////        tb.setTitleCentered(false);
-//////        
-//////        
-//////
-//        Button menuButton = new Button("");
-//        menuButton.setUIID("Title");
-//        FontImage.setMaterialIcon(menuButton, FontImage.MATERIAL_MENU);
-//        menuButton.addActionListener(e -> getToolbar().openSideMenu());
-////////
-//////        Container titleCmp = BoxLayout.encloseY(
-//////                FlowLayout.encloseIn(menuButton),
-//////                BorderLayout.centerAbsolute(
-//////                        BoxLayout.encloseY(
-//////                                new Label("", "Title"),
-//////                                new Label("", "SubTitle")
-//////                        )
-//////                )
-//////        );
-//////        tb.setTitleComponent(titleCmp);
-//        setupSideMenu(res);
+        
     }
 
     @Override
     protected void showOtherForm(Resources res) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 }

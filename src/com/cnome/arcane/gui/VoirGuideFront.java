@@ -6,6 +6,7 @@
 package com.cnome.arcane.gui;
 
 import com.cnome.arcane.entities.Guides;
+import com.cnome.arcane.services.GuideService;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ShareButton;
 import com.codename1.components.SpanLabel;
@@ -34,6 +35,7 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.ImageIO;
+import com.codename1.ui.util.Resources;
 import java.io.IOException;
 import java.io.OutputStream;
 /**
@@ -41,7 +43,8 @@ import java.io.OutputStream;
  * @author Ghiloufi
  */
 public class VoirGuideFront extends Form {
- public VoirGuideFront(Guides guide,Form previous) {
+      GuideService gs = GuideService.getInstance();
+ public VoirGuideFront(Guides guide,Form previous,Resources res) {
                 Form hi = new Form();
 
         //Article article = new entite.Article();
@@ -108,66 +111,37 @@ public class VoirGuideFront extends Form {
              
         });
           
-     
+     Button Supprimer = new Button("\nSupprimer ");
       btnE.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                //FormationService fs = new FormationService();
-                // FormationService.getInstance().AjouterRating(s.getProgress(evt), f);
-//              if(  FormationService.getInstance().isRated(1, f)==0)     {
-
-// FormationService.getInstance().AjouterRating(s.getProgress(evt), f,UserService.getCurrentUser().getUser_id());
-
-//System.out.println(f.getFormation_id());
-
-Dialog.show("success", "Notation est Bien ajoutée", new Command("OK"));
+         
+        Dialog.show("success", "Notation est Bien ajoutée", new Command("OK"));
                
             } 
       } );
-     
+     Supprimer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                       if (gs.deleteGuide(guide.getID_g())) {
+                Dialog.show("Success", "Task Deleted successfully", "Got it", null);
+            } else {
+                Dialog.show("Failed", "Something Wrong! Try again", "Got it", null);
+            };
+            new ListeGuideFront(res).showBack();
+            }
+        });
      Container cn = new Container(BoxLayout.x());
      cn.add(s);
      cn.add(l);
     cn.add(btnE);
+    cn.add(Supprimer);
 c.add(cn);
-/////////////////partager///////////////////////
 
-
-//hi.revalidate();
-//hi.setVisible(true);
-//hi.paintComponent(screenshot.getGraphics(), true);
-
-
-//sb.setImageToShare(url, "image/png");
         c.add(hi);
-        ///////////////////////////////////////QRCode////////////////
-//        BitMatrix matrix=null;
-//        try
-//      {
-//        matrix = new QRCodeWriter().encode(article.getNom(), BarcodeFormat.QR_CODE, 400, 400);
-//        }
-//        catch (Exception e)
-//      {
-//        e.printStackTrace();
-//      }
-//        int width = matrix.getWidth();
-//        int height = matrix.getHeight();
-//        int[] image = new int[width*height];
-//        int i=0;
-//        for (int x = 0; x < width; x++) {
-//          for (int y = 0; y < height; y++) {
-//            image[i++] = !matrix.get(x, y) ? 0xffffffff : 0xff000000;
-//          }
-//        }
-//       RGBImage rim= new RGBImage(image, width, height);
-//       c.add(rim);
-//        
+
         
-        
-        
-        
-        
-//        c.add(p.getArticles().toString());
+   
         
         this.add(c);
 

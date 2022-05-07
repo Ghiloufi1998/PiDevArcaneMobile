@@ -61,6 +61,16 @@ public class Guides {
         this.image = image;
     }
 
+    public Guides(int ID_g, String titre, String Pays, int Level, String image, int id_vol) {
+        this.ID_g = ID_g;
+        this.titre = titre;
+        this.Pays = Pays;
+        this.Level = Level;
+        this.image = image;
+        this.id_vol = id_vol;
+    }
+    
+
     public int getID_g() {
         return ID_g;
     }

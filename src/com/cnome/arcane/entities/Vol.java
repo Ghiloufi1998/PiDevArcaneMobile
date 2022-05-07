@@ -10,7 +10,7 @@ package com.cnome.arcane.entities;
  * @author Acer
  */
 public class Vol {
-  private int    Vol_id ;   
+  private int Vol_id ;   
   private String Destination ;   
   private String Départ ;   
   private int prix;

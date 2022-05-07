@@ -10,6 +10,6 @@ package com.cnome.arcane.utilities;
  * @author Ghiloufi
  */
 public class Statics {
-      public static String BASE_URL = "http://localhost:8000";
+      public static String BASE_URL = "http://127.0.0.1:8000";
     
 }

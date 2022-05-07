@@ -25,7 +25,7 @@ public class GuideHomeForm extends Form{
 
         //custom
         this.setLayout(BoxLayout.y());
-        this.setTitle("All Guides");
+        this.setTitle("Liste Guides");
         this.getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, (evt) -> {
             new GuideHomeForm().showBack();
         });
