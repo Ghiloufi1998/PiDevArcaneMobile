@@ -48,9 +48,9 @@ public class UpdateForm extends Form {
         //actions
         submitBtn.addActionListener((evt) -> {
             if (th.updateHebergement(new Hebergement(id, desc.getText(), type.getText(), Integer.parseInt(dis.getText()), ad.getText(), img.getText()))) {
-                Dialog.show("Success", "Task Updated successfully", "Got it", null);
+                Dialog.show("Avec succes", "Hébergement modifié", "ok", null);
             } else {
-                Dialog.show("Failed", "Something Wrong! Try again", "Got it", null);
+                Dialog.show("Echec", "Erreur", "ok", null);
             }
         });
 

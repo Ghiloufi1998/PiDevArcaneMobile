@@ -22,7 +22,7 @@ public class HomeForm extends Form{
         
         //custom
         this.setLayout(BoxLayout.yCenter());
-        this.setTitle("Home");
+        this.setTitle("Accueil");
         
         //widgets
         Button addTaskBtn = new Button("Ajouter Hebergement");

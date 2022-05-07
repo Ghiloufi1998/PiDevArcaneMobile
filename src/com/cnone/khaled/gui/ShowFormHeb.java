@@ -11,6 +11,7 @@ import com.cnone.khaled.services.TaskService;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
+import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.EncodedImage;
@@ -18,6 +19,7 @@ import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
+import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.URLImage;
 import com.codename1.ui.events.ActionEvent;
@@ -48,6 +50,7 @@ public class ShowFormHeb extends Form {
     public ShowFormHeb(Resources res) {
 
         instance=this;
+        String url;
 //        super(BoxLayout.y());
        Toolbar tb = getToolbar();
 //		tb.setUIID("Toolbar");
@@ -71,7 +74,10 @@ public class ShowFormHeb extends Form {
         Button Modifier = new Button("Modifier ");
         Button Supprimer = new Button("Supprimer ");
         EncodedImage enc = EncodedImage.createFromImage(Image.createImage(500, 500), true);
-        String url = "file:///C:/Users/Acer/exp/AboveBeyondSymfony-module_iheb/public/uploads/"+h.getImage();
+        if(h.getImage().startsWith("file://")){
+         url =h.getImage(); }
+        else{
+         url = "file:///C:/Users/Acer/exp/AboveBeyondSymfony-module_iheb/public/uploads/"+h.getImage();}
       ImageViewer img = new ImageViewer(URLImage.createToStorage(enc, url.substring(url.lastIndexOf("/")+1, url.length()), url,URLImage.RESIZE_SCALE_TO_FILL));
         Modifier.addActionListener(new ActionListener() {
             @Override
@@ -84,9 +90,9 @@ public class ShowFormHeb extends Form {
             @Override
             public void actionPerformed(ActionEvent evt) {
                        if (th.deleteHebergement(h.getHebergement_id())) {
-                Dialog.show("Success", "Task Deleted successfully", "Got it", null);
+                Dialog.show("Avec succes", "Hébergement supprimé", "ok", null);
             } else {
-                Dialog.show("Failed", "Something Wrong! Try again", "Got it", null);
+                Dialog.show("Echec", "Erreur!", "ok", null);
             };
             new HomeForm(res).showBack();
             }
@@ -103,11 +109,41 @@ public class ShowFormHeb extends Form {
         cnt1.add(Modifier);
         cnt1.add(Supprimer);
         
-        
-
-        
         add(cnt1);
+                TextField searchField;
+                searchField = new TextField("", "rechercher...");
+                //searchField.getHintLabel().setUIID("Title");
+                //searchField.setUIID("Title");
+                //tb.setGlobalToolbar(true);
+                tb.setTitleComponent(searchField);
+                //if field content changed
+                searchField.addDataChangeListener((i1, i2) -> {
+                String t = searchField.getText();
+                if(t.length() < 1) {
+                for(Component cmp : getContentPane()) {
+                cmp.setHidden(false);
+                cmp.setVisible(true);
+                }
+                } else {
+                t = t.toLowerCase();
+                for(Component cmp: getContentPane()) {
+                //tekhou el val ta3 el champ : champ li 3malt 3lih el recherche type span label (emplacement : container->container->spanlabel )
+                String val = ((Label) ((Container)((Container) cmp).getComponentAt(0)).getComponentAt(0)).getText();
+                System.out.println( val );
+                boolean show = val != null && val.toLowerCase().indexOf(t) > -1;
+                cmp.setHidden(!show);
+                cmp.setVisible(show);
+                }
+                }
+                getContentPane().animateLayout(250);
+                });
+        
+        
+        
+        
         }
+        
+        
     }
     
     protected void showOtherForm(Resources res) {
