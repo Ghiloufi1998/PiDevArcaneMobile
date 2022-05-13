@@ -69,7 +69,7 @@ public class ShowHForm extends Form {
                });
                
                Container ctn = new Container(BoxLayout.y());
-              // ctn.addAll(new ImageViewer(theme.getImage(h.getImage())), new Label(h.getType()), new Label(h.getAdresse()), new Label(h.getType()));
+               ctn.addAll(new ImageViewer(theme.getImage(h.getImage())), new Label(h.getType()), new Label(h.getAdresse()), new Label(h.getType()));
                ctn.addAll(new Label(h.getType()), new Label(h.getAdresse()), new Label(h.getType()));
                f2.add(ctn);
                f2.show();

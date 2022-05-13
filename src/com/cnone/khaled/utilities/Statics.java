@@ -11,4 +11,6 @@ package com.cnone.khaled.utilities;
 public class Statics {
     
     public static String BASE_URL = "http://127.0.0.1:8000/hebergement";
+    public static String BASE_URL1 = "http://127.0.0.1:8000/reservation";
+    public static String BASE_URL2 = "http://127.0.0.1:8000/transport";
 }

@@ -8,11 +8,15 @@ import com.cnone.iheb.entities.Hebergement;
 import com.cnone.iheb.entities.Task;
 import com.cnone.khaled.services.HebergementService;
 import com.cnone.khaled.services.TaskService;
+import com.codename1.components.ImageViewer;
 import com.codename1.ui.Button;
 import com.codename1.ui.Dialog;
+import com.codename1.ui.EncodedImage;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
+import com.codename1.ui.Image;
 import com.codename1.ui.TextField;
+import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
 
@@ -25,7 +29,7 @@ public class UpdateForm extends Form {
     //var
     HebergementService th = HebergementService.getInstance();
 
-    public UpdateForm(Resources res,int id) {
+    public UpdateForm(Resources res,int id,Hebergement h) {
 
         //CUSTOM
         this.setLayout(BoxLayout.y());
@@ -42,7 +46,16 @@ public class UpdateForm extends Form {
         TextField img  = new TextField("", "Image ");
        // TextField statusTF = new TextField("", "Task's status [0 - 1]");
         
+      EncodedImage enc = EncodedImage.createFromImage(Image.createImage(500, 500), true);
         
+        String url = "file:///C:/Users/Acer/exp/AboveBeyondSymfony-module_iheb/public/assets/qr-code/"+h.getDescription()+".png";
+        //C:\Users\Acer\exp\AboveBeyondSymfony-module_iheb\public\assets\qr-code
+        System.out.println(h.getImage());
+        ImageViewer img1 = new ImageViewer(URLImage.createToStorage(EncodedImage.createFromImage(Image.createImage(500, 500), true), url.substring(url.lastIndexOf("/")+1, url.length()), url,URLImage.RESIZE_SCALE_TO_FILL)); 
+      // ImageViewer v=new ImageViewer(URLImage.createToStorage(enc, url, url, adapter));
+       
+       
+       
         Button submitBtn = new Button("Modifier");
 
         //actions
@@ -55,7 +68,7 @@ public class UpdateForm extends Form {
         });
 
         //end
-        this.addAll(desc, type , dis , ad ,img, submitBtn);
+        this.addAll(desc, type , dis , ad ,img, img1, submitBtn); 
 
     }
 

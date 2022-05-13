@@ -56,6 +56,8 @@ public class ShowFormHeb extends Form {
 //		tb.setUIID("Toolbar");
       tb.addMaterialCommandToLeftBar("",FontImage.MATERIAL_ARROW_BACK, e-> showOtherForm(res));
 //        SpanLabel sp = new SpanLabel();
+
+        
         List<Hebergement> list = HebergementService.getInstance().fetchHbrs();
 
        
@@ -73,16 +75,20 @@ public class ShowFormHeb extends Form {
        // Label SLrem = new Label(h.getDisponibilité());
         Button Modifier = new Button("Modifier ");
         Button Supprimer = new Button("Supprimer ");
+                Button aj = new Button("Ajouter Transport ");
+                Button sh = new Button("Afficher les moyens de Transports ");
+
         EncodedImage enc = EncodedImage.createFromImage(Image.createImage(500, 500), true);
         if(h.getImage().startsWith("file://")){
          url =h.getImage(); }
         else{
          url = "file:///C:/Users/Acer/exp/AboveBeyondSymfony-module_iheb/public/uploads/"+h.getImage();}
       ImageViewer img = new ImageViewer(URLImage.createToStorage(enc, url.substring(url.lastIndexOf("/")+1, url.length()), url,URLImage.RESIZE_SCALE_TO_FILL));
+      th.QR(h);
         Modifier.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                       new UpdateForm(res,h.getHebergement_id()).show();
+                       new UpdateForm(res,h.getHebergement_id(),h).show();
             }
         });
         
@@ -97,7 +103,18 @@ public class ShowFormHeb extends Form {
             new HomeForm(res).showBack();
             }
         });
-        
+         aj.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                       new Addtrs(res, h).show();
+            }
+        });
+         sh.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                       new ShowFormTransport(res, h).show();
+            }
+        });
         
 
         cnt2.add(SLdesc);
@@ -108,6 +125,8 @@ public class ShowFormHeb extends Form {
        cnt1.add(img);
         cnt1.add(Modifier);
         cnt1.add(Supprimer);
+        cnt1.add(aj);
+        cnt1.add(sh);
         
         add(cnt1);
                 TextField searchField;
