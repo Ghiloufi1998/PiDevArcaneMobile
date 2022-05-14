@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource majorVersion="1" minorVersion="11" useXmlUI="false">
+    <image name="48246_M.jpg"  />
+    <image name="admin.png"  />
+    <image name="back.png"  />
+    <image name="centre.png"  />
+    <image name="changePassword.png"  />
+    <image name="confirm.png"  />
+    <image name="delete_user.png"  />
+    <image name="desactiver.png"  />
+    <image name="evenement.png"  />
+    <image name="facebook.png"  />
+    <image name="feedback.png"  />
+    <image name="find_user.png"  />
+    <image name="forget.png"  />
+    <image name="google.png"  />
+    <image name="icons8-add-file-50.png"  />
+    <image name="icons8-add-user-male-50.png"  />
+    <image name="icons8-around-the-globe-100.png"  />
+    <image name="icons8-birthday-50.png"  />
+    <image name="icons8-cancel-50.png"  />
+    <image name="icons8-checked-100.png"  />
+    <image name="icons8-compact-camera-50.png"  />
+    <image name="icons8-compose-50.png"  />
+    <image name="icons8-customer-50.png"  />
+    <image name="icons8-cyber-security-100.png"  />
+    <image name="icons8-delete-bin-100.png"  />
+    <image name="icons8-find-user-male-100.png"  />
+    <image name="icons8-gmail-100.png"  />
+    <image name="icons8-go-back-50.png"  />
+    <image name="icons8-grand-master-key-100.png"  />
+    <image name="icons8-id-male-student-50.png"  />
+    <image name="icons8-key-2-100.png"  />
+    <image name="icons8-key-2-50.png"  />
+    <image name="icons8-lady-window-password-50.png"  />
+    <image name="icons8-mobile-email-50.png"  />
+    <image name="icons8-name-tag-50.png"  />
+    <image name="icons8-new-100.png"  />
+    <image name="icons8-paper-plane-50.png"  />
+    <image name="icons8-resume-100.png"  />
+    <image name="icons8-secured-letter-100.png"  />
+    <image name="icons8-secured-letter-50.png"  />
+    <image name="images (1).jpg"  />
+    <image name="images.jpg"  />
+    <image name="importImage.png"  />
+    <image name="login.png"  />
+    <image name="logo.png"  />
+    <image name="logotabaani.png"  />
+    <image name="logout.png"  />
+    <image name="pass.png"  />
+    <image name="pdf.png"  />
+    <image name="profile.png"  />
+    <image name="publication.png"  />
+    <image name="regime.png"  />
+    <image name="searchcircularbutton_79274.png"  />
+    <image name="sendmail.png"  />
+    <image name="signin.png"  />
+    <image name="signup.png"  />
+    <image name="stat.png"  />
+    <image name="statistic.png"  />
+    <theme name="Theme">
+        <val key="@includeNativeBool" value="true" />
+    </theme>
+    <image name="twitter.png"  />
+    <image name="unnamed.jpg"  />
+    <image name="updateProfile.png"  />
+    <image name="user.png"  />
+</resource>
